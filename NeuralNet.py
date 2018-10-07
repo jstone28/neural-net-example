@@ -17,7 +17,8 @@ class NeuralNetwork:
   def feedforward(self):
     self.layer1 = sigmoid(np.dot(self.input, self.weights1))
     self.output = sigmoid(np.dot(self.layer1, self.weights2))
-    print(nm.output)
+    print("layer1", self.layer1)
+    print("output", self.output)
 
   def backprop(self):
     d_weights2 = np.dot(self.layer1.T, (2 * (self.y - self.output) * sigmoid_derivative(self.output)))
@@ -25,7 +26,8 @@ class NeuralNetwork:
 
     self.weights1 += d_weights1
     self.weights2 += d_weights2
-    print(nm.output)
+    print("weight1", self.weights1)
+    print("weight2", self.weights2)
 
 if __name__ == "__main__":
   X = np.array([
@@ -42,9 +44,9 @@ if __name__ == "__main__":
               ])
   nm = NeuralNetwork(X, y)
 
-  for i in range(15000):
+  for i in range(1500):
     nm.feedforward()
     nm.backprop()
 
-  print(nm.output)
+  print("NM OUTPUT", nm.output)
 
